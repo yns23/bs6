@@ -9,6 +9,7 @@ class Leser extends Thread {
 
 
     Leser(Speicher speicher, ReentrantReadWriteLock.ReadLock lock) {
+
         this.speicher = speicher;
         this.lock = lock;
     }
@@ -17,14 +18,16 @@ class Leser extends Thread {
 
 
         for (int i = 0; i < 4; ++i) {
-            if (speicher.isEmpty()){
+            lock.lock();
                 try {
-                    speicher.readLine(i);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+
+                speicher.readLine(i);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
+            lock.unlock();
         }
+
     }
 }
 

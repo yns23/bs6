@@ -18,13 +18,20 @@ class Schreiber extends Thread {
     }
 
     public void run() {
+
+
         for (int i = 0; i < zahlWiederholungen; i++) {
             for (String s : text) {
+                lock.lock();
+
                 try {
+
                     speicher.writeLine(s);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                lock.unlock();
+
             }
         }
 

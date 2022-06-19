@@ -1,4 +1,6 @@
-package b;
+package b2;
+
+import java.util.Arrays;
 
 public class SemaphoreGroup {
     private int[] values;
@@ -8,6 +10,9 @@ public class SemaphoreGroup {
             return;
         }
         values = new int[numberOfMembers];
+
+        Arrays.fill(values, 1);
+
     }
 
     public int getNumberOfMembers() {
